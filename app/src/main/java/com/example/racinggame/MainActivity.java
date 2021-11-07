@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private int numHeart =3;
 
     private ImageButton[] main_BTN_Arrows;
+    private final int BTNLEFT =0;
+    private final int BTNRIGHT =1;
 
     private final int ROCK_IN_ROW=3;
     private final int ROCK_IN_COL=5;
@@ -58,25 +60,25 @@ public class MainActivity extends AppCompatActivity {
         startGame();
 
 
-        main_BTN_Arrows[0].setOnClickListener(V->{
-            moveCar(0);
+        main_BTN_Arrows[BTNLEFT].setOnClickListener(V->{
+            moveCar(BTNLEFT);
         });
-        main_BTN_Arrows[1].setOnClickListener(V->{
-            moveCar(1);
+        main_BTN_Arrows[BTNRIGHT].setOnClickListener(V->{
+            moveCar(BTNRIGHT);
         });
 
 
     }
 
-    private void moveCar(int direct) {
+    private void moveCar(int direction) {
 
         if (main_IMG_RacingCar[0].getVisibility() == View.VISIBLE) { //Car Left is Visible
-            if (direct == 1) {//Car Move Right
+            if (direction == BTNRIGHT) {//Car Move Right
                 main_IMG_RacingCar[0].setVisibility(View.INVISIBLE);
                 main_IMG_RacingCar[1].setVisibility(View.VISIBLE);
             }
         } else if (main_IMG_RacingCar[1].getVisibility() == View.VISIBLE) {//Car Middle is Visible
-            if (direct == 0) {//Car Move Left
+            if (direction == BTNLEFT) {//Car Move Left
                 main_IMG_RacingCar[1].setVisibility(View.INVISIBLE);
                 main_IMG_RacingCar[0].setVisibility(View.VISIBLE);
             } else {//Car Move Right
@@ -84,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 main_IMG_RacingCar[2].setVisibility(View.VISIBLE);
             }
         } else {//Car Right is Visible
-            if (direct == 0) {//Car Move Left
+            if (direction == BTNLEFT) {//Car Move Left
                 main_IMG_RacingCar[2].setVisibility(View.INVISIBLE);
                 main_IMG_RacingCar[1].setVisibility(View.VISIBLE);
             }
