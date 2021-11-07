@@ -31,23 +31,17 @@ public class MainActivity extends AppCompatActivity {
     private final int BTNLEFT =0;
     private final int BTNRIGHT =1;
 
+    private ImageView[][] main_IMG_Stones;
     private final int ROCK_IN_ROW=3;
     private final int ROCK_IN_COL=5;
-    private ImageView[][] main_IMG_Stones;
-
-
 
     private ImageView[] main_IMG_RacingCar;
     private ImageView main_IMG_GameOver;
 
     private ImageView main_IMG_Background;
 
-    private static final int DELAY=1000;
-    private static final int ROCK_DELAY=5000;
-
-    private float locRacingCar;
-    private  LinearLayout root_RacingCar;
     private Timer timer;
+    private static final int DELAY=1000;
 
 
     @Override
@@ -196,7 +190,6 @@ public class MainActivity extends AppCompatActivity {
         for(int i=0; i<3; i++)
             main_IMG_Heart[i].setVisibility(View.VISIBLE);
     }
-
 
     private void findViews() {
         main_IMG_Heart = new ImageView[] {findViewById(R.id.main_IMG_Heart3),findViewById(R.id.main_IMG_Heart2),findViewById(R.id.main_IMG_Heart1)};
