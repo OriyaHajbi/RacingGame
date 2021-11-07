@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Racing Game</string>
+    <string name="HeartOne">HeartOne</string>
+    <string name="HeartTwo">HeartTwo</string>
+    <string name="HeartThird">HeartThird</string>
+    <string name="LeftButton">LeftButton</string>
+    <string name="RightButto">RightButto</string>
+    <string name="Road">Road</string>
+    <string name="RacingCar">RacingCar</string>
+
+
+
+
+</resources>
