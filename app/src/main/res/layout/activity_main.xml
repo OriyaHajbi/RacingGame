@@ -12,9 +12,10 @@
         android:id="@+id/main_IMG_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/road">
+        android:background="@drawable/betterroad">
 
     </ImageView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,11 +23,23 @@
 
 
         <LinearLayout
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="5dp"
-            android:layout_marginLeft="280dp"
             android:layout_weight="1"
             android:orientation="horizontal">
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
 
             <ImageView
                 android:id="@+id/main_IMG_Heart1"
