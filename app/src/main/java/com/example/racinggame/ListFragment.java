@@ -20,6 +20,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
 
 
 public class ListFragment extends Fragment {
@@ -27,6 +28,7 @@ public class ListFragment extends Fragment {
     private RecyclerView list_RV_records;
     private CallBack_List callbackList;
     private AppCompatActivity activity;
+    private MyDB myDB;
 
     public void setCallbackList(CallBack_List callbackList) {
         this.callbackList = callbackList;
@@ -38,8 +40,11 @@ public class ListFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_list , container , false);
 
+        String fromMSP = MSP.getInstance(activity).getStrSP("MY_DB", "");
+        myDB = new Gson().fromJson(fromMSP, MyDB.class);
+
         list_RV_records = view.findViewById(R.id.list_RV_records);
-        RecordAdapter recordAdapter = new RecordAdapter(this, MyDB.getRecords());
+        RecordAdapter recordAdapter = new RecordAdapter(this, myDB.getRecords());
 
         recordAdapter.setRecordItemClickedListener(new RecordAdapter.RecordItemClickedListener() {
             @Override

@@ -38,27 +38,27 @@ import java.util.TimerTask;
 public class GameActivity extends AppCompatActivity {
 
     private ImageView[] main_IMG_Heart;
-    private int numHeart =3;
+    private int numHeart = 3;
 
     private LinearLayout main_LL_arrows;
     private ImageButton[] main_BTN_Arrows;
-    private final int MOVE_LEFT =0;
-    private final int MOVE_RIGHT =1;
+    private final int MOVE_LEFT = 0;
+    private final int MOVE_RIGHT = 1;
 
     private ImageView[][] main_IMG_Matrix;
-    private int [][] main_Num_Pic_In_Matrix;
-    private final int ROCK_IN_ROW=5;
-    private final int ROCK_IN_COL=7;
+    private int[][] main_Num_Pic_In_Matrix;
+    private final int ROCK_IN_ROW = 5;
+    private final int ROCK_IN_COL = 7;
 
     private TextView lblScore;
-    private int score=0;
-    
+    private int score = 0;
 
-    private  String[] main_STR_Types_In_Matrix;
+
+    private String[] main_STR_Types_In_Matrix;
 
     private ImageView[] main_IMG_RacingCar;
-    private int currectIndexCar =2;
-    private int beforeCurrectIndexCar =0;
+    private int currectIndexCar = 2;
+    private int beforeCurrectIndexCar = 0;
 
     private ImageView main_IMG_arrows;
 
@@ -70,9 +70,9 @@ public class GameActivity extends AppCompatActivity {
     private Boolean isSensorOn = false;
 
     private Timer timer;
-    private static final int REGULAR_DELAY =1000;
-    private static final int FAST_DELAY=1500;
-    private static final int EASY_DELAY=500;
+    private static final int REGULAR_DELAY = 1000;
+    private static final int FAST_DELAY = 1500;
+    private static final int EASY_DELAY = 500;
     private int speed = REGULAR_DELAY;
 
 
@@ -88,8 +88,8 @@ public class GameActivity extends AppCompatActivity {
 
     private SensorManager sensorManager;
     private Sensor sensor;
-    private final double MOVE_RIGHT_LIMIT=1.5;
-    private final double MOVE_LEFT_LIMIT=-1.5;
+    private final double MOVE_RIGHT_LIMIT = 1.5;
+    private final double MOVE_LEFT_LIMIT = -1.5;
     private double x;
     private double y;
     private double z;
@@ -105,12 +105,12 @@ public class GameActivity extends AppCompatActivity {
             z = (int) event.values[2];
 
         }
+
         @Override
         public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
         }
     };
-
 
 
     @Override
@@ -124,17 +124,6 @@ public class GameActivity extends AppCompatActivity {
         isSoundOn = bundle.getBoolean(SOUND);
         isSensorOn = bundle.getBoolean(SENSOR);
 
-        String fromJSON = bundle.getString(SCORE);
-
-
-        //Read Data From MSP
-        if (MSP.getInstance(this) != null){
-            myDB = new Gson().fromJson(fromJSON,MyDB.class);
-        }else{
-            myDB= new MyDB();
-        }
-
-
 
         findViews();
         setViews();
@@ -144,15 +133,14 @@ public class GameActivity extends AppCompatActivity {
         initHandler();
 
 
-
-        if (isSensorOn){
+        if (isSensorOn) {
             setArrowGone();
             moveCarWithSensors(MOVE_RIGHT);
         }
-        main_BTN_Arrows[MOVE_LEFT].setOnClickListener(V->{
+        main_BTN_Arrows[MOVE_LEFT].setOnClickListener(V -> {
             moveCarWithArrows(MOVE_LEFT);
         });
-        main_BTN_Arrows[MOVE_RIGHT].setOnClickListener(V->{
+        main_BTN_Arrows[MOVE_RIGHT].setOnClickListener(V -> {
             moveCarWithArrows(MOVE_RIGHT);
         });
 
@@ -160,7 +148,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void initHandler() {
-        if (isSensorOn){
+        if (isSensorOn) {
             handler = new Handler();
             runnable = new Runnable() {
                 @Override
@@ -176,7 +164,7 @@ public class GameActivity extends AppCompatActivity {
                     if (currentY < -1)
                         speed = EASY_DELAY;
 
-                    handler.postDelayed(this , 400);
+                    handler.postDelayed(this, 400);
                     if (isHandlerStop)
                         handler.removeCallbacks(runnable);
                 }
@@ -209,7 +197,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        sensorManager.registerListener(accSensorEventListener , sensor,SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(accSensorEventListener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
@@ -223,28 +211,28 @@ public class GameActivity extends AppCompatActivity {
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
     }
-    public  boolean isSensorExists(int sensorType){
+
+    public boolean isSensorExists(int sensorType) {
         return (sensorManager.getDefaultSensor(sensorType) != null);
     }
 
     private void moveCarWithArrows(int direction) {
-        int nextIndexCar =0;
+        int nextIndexCar = 0;
 
-        if (direction == 1){
-            nextIndexCar = currectIndexCar+1;
+        if (direction == 1) {
+            nextIndexCar = currectIndexCar + 1;
             if (nextIndexCar == 5)
-                nextIndexCar =4;
-            setCarIndexVisible(nextIndexCar ,currectIndexCar);
+                nextIndexCar = 4;
+            setCarIndexVisible(nextIndexCar, currectIndexCar);
 
-        }else{
-            nextIndexCar = currectIndexCar-1;
+        } else {
+            nextIndexCar = currectIndexCar - 1;
             if (nextIndexCar == -1)
-                nextIndexCar =0;
-            setCarIndexVisible(nextIndexCar ,currectIndexCar);
+                nextIndexCar = 0;
+            setCarIndexVisible(nextIndexCar, currectIndexCar);
         }
         beforeCurrectIndexCar = currectIndexCar;
         currectIndexCar = nextIndexCar;
-
 
 
     }
@@ -256,7 +244,7 @@ public class GameActivity extends AppCompatActivity {
         main_LL_arrows.setVisibility(View.GONE);
     }
 
-    private void setCarIndexVisible(int nextIndexCar , int currectIndex) {
+    private void setCarIndexVisible(int nextIndexCar, int currectIndex) {
         main_IMG_RacingCar[currectIndex].setVisibility(View.INVISIBLE);
         main_IMG_RacingCar[nextIndexCar].setVisibility(View.VISIBLE);
     }
@@ -267,11 +255,11 @@ public class GameActivity extends AppCompatActivity {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                runOnUiThread(() ->{
+                runOnUiThread(() -> {
                     playGame();
                 });
             }
-        },0, speed);
+        }, 0, speed);
     }
 
     private void playGame() {
@@ -283,13 +271,13 @@ public class GameActivity extends AppCompatActivity {
     private void randomPic() {
         int colIndex = r.nextInt(7);
         int typeView = r.nextInt(5);
-        switch (colIndex){
+        switch (colIndex) {
             case 0:
             case 1:
             case 2:
             case 3:
             case 4:
-                setOnePicInCol(colIndex ,typeView);
+                setOnePicInCol(colIndex, typeView);
                 break;
         }
     }
@@ -300,27 +288,27 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void setminusOne(int row) {
-        for (int i=0; i<ROCK_IN_ROW; i++)
+        for (int i = 0; i < ROCK_IN_ROW; i++)
             main_Num_Pic_In_Matrix[row][i] = -1;
     }
 
     private void setViewInMatrix() {
-        for (int i=0; i<ROCK_IN_COL; i++){
-            for (int j=0; j<ROCK_IN_ROW; j++){
-                if (main_Num_Pic_In_Matrix[i][j] != -1){
-                    int imageID = getResources().getIdentifier(main_STR_Types_In_Matrix[main_Num_Pic_In_Matrix[i][j]] , "drawable", getPackageName());
+        for (int i = 0; i < ROCK_IN_COL; i++) {
+            for (int j = 0; j < ROCK_IN_ROW; j++) {
+                if (main_Num_Pic_In_Matrix[i][j] != -1) {
+                    int imageID = getResources().getIdentifier(main_STR_Types_In_Matrix[main_Num_Pic_In_Matrix[i][j]], "drawable", getPackageName());
                     main_IMG_Matrix[i][j].setImageResource(imageID);
                     main_IMG_Matrix[i][j].setVisibility(View.VISIBLE);
-                }else{
+                } else {
                     main_IMG_Matrix[i][j].setVisibility(View.INVISIBLE);
                 }
             }
         }
     }
 
-    private void downRocks(){
-        for (int i= ROCK_IN_COL-1 ; i>0;i--){
-            for (int j=ROCK_IN_ROW-1; j>=0;j--) {
+    private void downRocks() {
+        for (int i = ROCK_IN_COL - 1; i > 0; i--) {
+            for (int j = ROCK_IN_ROW - 1; j >= 0; j--) {
                 if (i == ROCK_IN_COL - 1 && main_Num_Pic_In_Matrix[i][j] != -1) {
                     checkCar(j, main_Num_Pic_In_Matrix[i][j]);
                 }
@@ -332,10 +320,10 @@ public class GameActivity extends AppCompatActivity {
 
     private void checkCar(int col, int type) {
 
-        if (getIndexCar() == col){
-            if (type == 0){
+        if (getIndexCar() == col) {
+            if (type == 0) {
                 getMoney();
-            }else{
+            } else {
                 vibrate();
                 removeHealth();
             }
@@ -349,16 +337,16 @@ public class GameActivity extends AppCompatActivity {
 
     private void removeHealth() {
         makeSound();
-        main_IMG_Heart[numHeart-1].setVisibility(View.INVISIBLE);
+        main_IMG_Heart[numHeart - 1].setVisibility(View.INVISIBLE);
         numHeart--;
         if (numHeart == 0) {
             gameOver();
         }
-        toest("you have " + numHeart +" Lives");
+        toest("you have " + numHeart + " Lives");
     }
 
     private void makeSound() {
-        if (isSoundOn){
+        if (isSoundOn) {
             MediaPlayer music = MediaPlayer.create(GameActivity.this, R.raw.videogamebombalert);
             music.start();
         }
@@ -366,29 +354,37 @@ public class GameActivity extends AppCompatActivity {
 
     private void gameOver() {
         if (isSensorOn)
-            isHandlerStop=true;
+            isHandlerStop = true;
         checkAndSaveRecord();
         timer.cancel();
-        Intent intent = new Intent(this , ScoreMapActivity.class);
+        Intent intent = new Intent(this, ScoreMapActivity.class);
         startActivity(intent);
         finish();
     }
 
     private void checkAndSaveRecord() {
-        myDB.checkRecord(new Record().setName("Oriya").setScore(score).setLat(lat).setLon(lon));
+//        Intent intent = getIntent();
+//        Bundle bundle = intent.getBundleExtra("bundle");
+//        String fromJSON = bundle.getString("MY_DB");
+        //Read Data From MSP
+
+        String fromMSP = MSP.getInstance(this).getStrSP("MY_DB", "");
+        myDB = new Gson().fromJson(fromMSP, MyDB.class);
+
+        myDB.addRecord(new Record().setName("Oriya").setScore(score).setLat(lat).setLon(lon));
 
         //save to MSP
         String jsonRecords = new Gson().toJson(myDB);
-        MSP.getInstance(this).putStringSP("MY_DB" ,jsonRecords);
+        MSP.getInstance(this).putStringSP("MY_DB", jsonRecords);
     }
 
     private void toest(String text) {
-        Toast.makeText(this , text, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, text, Toast.LENGTH_LONG).show();
     }
 
     private void vibrate() {
         Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
         } else {
             v.vibrate(500);
@@ -404,7 +400,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void setRacingCarsView() {
-        main_IMG_RacingCar = new ImageView[] {
+        main_IMG_RacingCar = new ImageView[]{
                 findViewById(R.id.main_IMG_RacingCar0),
                 findViewById(R.id.main_IMG_RacingCar1),
                 findViewById(R.id.main_IMG_RacingCar2),
@@ -421,8 +417,8 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void setStonesOnView() {
-        for (int i=0; i<ROCK_IN_COL; i++)
-            for (int j=0; j<ROCK_IN_ROW; j++)
+        for (int i = 0; i < ROCK_IN_COL; i++)
+            for (int j = 0; j < ROCK_IN_ROW; j++)
                 main_IMG_Matrix[i][j].setVisibility(View.INVISIBLE);
     }
 
@@ -432,14 +428,14 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void setHeartsOnView() {
-        for(int i=0; i<3; i++)
+        for (int i = 0; i < 3; i++)
             main_IMG_Heart[i].setVisibility(View.VISIBLE);
     }
 
     private void findViews() {
         main_LL_arrows = findViewById(R.id.main_LL_arrows);
-        main_IMG_Heart = new ImageView[] {findViewById(R.id.main_IMG_Heart3),findViewById(R.id.main_IMG_Heart2),findViewById(R.id.main_IMG_Heart1)};
-        main_BTN_Arrows = new ImageButton[] {findViewById(R.id.main_BTN_Left),findViewById(R.id.main_BTN_Right)};
+        main_IMG_Heart = new ImageView[]{findViewById(R.id.main_IMG_Heart3), findViewById(R.id.main_IMG_Heart2), findViewById(R.id.main_IMG_Heart1)};
+        main_BTN_Arrows = new ImageButton[]{findViewById(R.id.main_BTN_Left), findViewById(R.id.main_BTN_Right)};
         main_IMG_arrows = findViewById(R.id.main_IMG_arrows);
         main_IMG_arrows.setVisibility(View.INVISIBLE);
         main_IMG_Background = findViewById(R.id.main_IMG_background);
@@ -447,7 +443,7 @@ public class GameActivity extends AppCompatActivity {
         lblScore = findViewById(R.id.main_LBL_score);
 
 
-        main_STR_Types_In_Matrix = new String[] {"money", "stone","stone1","stone2","stone3"};
+        main_STR_Types_In_Matrix = new String[]{"money", "stone", "stone1", "stone2", "stone3"};
 
         main_IMG_Matrix = new ImageView[][]{
                 {findViewById(R.id.main_IMG_Stone_0_0), findViewById(R.id.main_IMG_Stone_0_1), findViewById(R.id.main_IMG_Stone_0_2), findViewById(R.id.main_IMG_Stone_0_3), findViewById(R.id.main_IMG_Stone_0_4)},
@@ -461,10 +457,10 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void setMatrixs() {
-        main_Num_Pic_In_Matrix = new int[][] {{-1,-1,-1,-1,-1},{-1,-1,-1,-1,-1},{-1,-1,-1,-1,-1},{-1,-1,-1,-1,-1},{-1,-1,-1,-1,-1},{-1,-1,-1,-1,-1},{-1,-1,-1,-1,-1}};
+        main_Num_Pic_In_Matrix = new int[][]{{-1, -1, -1, -1, -1}, {-1, -1, -1, -1, -1}, {-1, -1, -1, -1, -1}, {-1, -1, -1, -1, -1}, {-1, -1, -1, -1, -1}, {-1, -1, -1, -1, -1}, {-1, -1, -1, -1, -1}};
     }
 
-    private int getIndexCar(){
+    private int getIndexCar() {
         return currectIndexCar;
     }
 }

@@ -25,8 +25,7 @@ public class MenuActivity extends AppCompatActivity {
     private boolean isSoundOn = false;
     private boolean isSensorOn = false;
 
-    private MyDB myDB;
-    private String fromJSON;
+
 
 
 
@@ -39,18 +38,10 @@ public class MenuActivity extends AppCompatActivity {
 
         findViews();
 
-        //Read Data From MSP
-        if (MSP.getInstance(this) != null) {
-            fromJSON = MSP.getInstance(this).getStrSP("MY_DB", "");
-            myDB = new Gson().fromJson(fromJSON, MyDB.class);
-        }
-
-
-
         menu_BTN_score.setOnClickListener(V-> {
             Intent intent = new Intent(this , ScoreMapActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putString(GameActivity.SCORE , fromJSON);
+//            bundle.putString(GameActivity.SCORE , fromJSON);
             startActivity(intent);
             finish();
         });
@@ -74,7 +65,7 @@ public class MenuActivity extends AppCompatActivity {
             Bundle bundle = new Bundle();
             bundle.putBoolean(GameActivity.SOUND ,isSoundOn );
             bundle.putBoolean(GameActivity.SENSOR ,isSensorOn );
-            bundle.putString(GameActivity.SCORE , fromJSON);
+//            bundle.putString(GameActivity.SCORE , fromJSON);
             intent.putExtra("bundle" , bundle);
             startActivity(intent);
             finish();
