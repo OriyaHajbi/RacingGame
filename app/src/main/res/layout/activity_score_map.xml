@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".GameActivity"
+    android:padding="24dp"
+    android:background="@drawable/menubackground">
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:orientation="horizontal">-->
+<!--        -->
+<!--    </LinearLayout>-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Top 10 scores"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+    <FrameLayout
+        android:id="@+id/score_FRM_score"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </FrameLayout>
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Map"
+        android:textColor="@color/black"
+        android:textSize="30sp"/>
+
+    <FrameLayout
+        android:id="@+id/score_FRM_map"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/teal_700">
+
+    </FrameLayout>
+
+    <ImageButton
+        android:id="@+id/score_BTN_back"
+        android:layout_width="136dp"
+        android:layout_height="1dp"
+        android:layout_weight=".4"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        tools:srcCompat="@drawable/backarrow" />
+
+
+</LinearLayout>

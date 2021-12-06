@@ -3,7 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/oriya/AndroidStudioProjects/RacingGame/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.21927083333333333" />
+        <entry key="..\:/Users/oriya/AndroidStudioProjects/RacingGame/app/src/main/res/drawable/ic_launcher_background.xml" value="0.21927083333333333" />
+        <entry key="..\:/Users/oriya/AndroidStudioProjects/RacingGame/app/src/main/res/layout/activity_game.xml" value="0.14221014492753623" />
+        <entry key="..\:/Users/oriya/AndroidStudioProjects/RacingGame/app/src/main/res/layout/activity_list.xml" value="0.2046875" />
         <entry key="..\:/Users/oriya/AndroidStudioProjects/RacingGame/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/oriya/AndroidStudioProjects/RacingGame/app/src/main/res/layout/activity_maps.xml" value="0.23802083333333332" />
+        <entry key="..\:/Users/oriya/AndroidStudioProjects/RacingGame/app/src/main/res/layout/activity_menu.xml" value="0.4466666666666667" />
+        <entry key="..\:/Users/oriya/AndroidStudioProjects/RacingGame/app/src/main/res/layout/activity_mspacticity.xml" value="0.36302083333333335" />
+        <entry key="..\:/Users/oriya/AndroidStudioProjects/RacingGame/app/src/main/res/layout/activity_score_map.xml" value="0.22" />
+        <entry key="..\:/Users/oriya/AndroidStudioProjects/RacingGame/app/src/main/res/layout/activity_splash.xml" value="0.203125" />
+        <entry key="..\:/Users/oriya/AndroidStudioProjects/RacingGame/app/src/main/res/layout/fragment_list.xml" value="0.28489583333333335" />
+        <entry key="..\:/Users/oriya/AndroidStudioProjects/RacingGame/app/src/main/res/layout/fragment_map.xml" value="0.22395833333333334" />
+        <entry key="..\:/Users/oriya/AndroidStudioProjects/RacingGame/app/src/main/res/layout/list_score_item.xml" value="0.2989583333333333" />
       </map>
     </option>
   </component>
