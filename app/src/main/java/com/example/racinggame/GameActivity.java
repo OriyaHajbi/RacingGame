@@ -75,16 +75,19 @@ public class GameActivity extends AppCompatActivity {
     private static final int EASY_DELAY = 500;
     private int speed = REGULAR_DELAY;
 
+    public static final String PLAYER_NAME = "PLAYER_NAME";
+    public String playerName = "";
 
     Random r = new Random();
 
     public static final String SCORE = "SCORE";
     private MyDB myDB;
 
-    private LocationManager locationManager;
-    private LocationListener locationListener;
-    private double lat;
-    private double lon;
+    public static final String LATITUDE = "LATITUDE";
+    public static final String LONGITUDE = "LONGITUDE";
+
+    private double lat = 0.0;
+    private double lon = 0.0;
 
     private SensorManager sensorManager;
     private Sensor sensor;
@@ -121,14 +124,16 @@ public class GameActivity extends AppCompatActivity {
         //Sound && sensor
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("bundle");
+        playerName = bundle.getString(PLAYER_NAME);
         isSoundOn = bundle.getBoolean(SOUND);
         isSensorOn = bundle.getBoolean(SENSOR);
+        lat = bundle.getDouble(LATITUDE);
+        lon = bundle.getDouble(LONGITUDE);
 
 
         findViews();
         setViews();
         initSensor();
-        locationPermission();
         startGame();
         initHandler();
 
@@ -177,22 +182,7 @@ public class GameActivity extends AppCompatActivity {
         moveCarWithArrows(diraction);
     }
 
-    private void locationPermission() {
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        locationListener = new LocationListener() {
-            @Override
-            public void onLocationChanged(@NonNull Location location) {
-                lat = location.getLatitude();
-                lon = location.getLongitude();
-            }
-        };
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-        } else {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 1, locationListener);
-        }
-    }
 
     @Override
     protected void onResume() {
@@ -342,7 +332,7 @@ public class GameActivity extends AppCompatActivity {
         if (numHeart == 0) {
             gameOver();
         }
-        toest("you have " + numHeart + " Lives");
+        toast("you have " + numHeart + " Lives");
     }
 
     private void makeSound() {
@@ -371,14 +361,14 @@ public class GameActivity extends AppCompatActivity {
         String fromMSP = MSP.getInstance(this).getStrSP("MY_DB", "");
         myDB = new Gson().fromJson(fromMSP, MyDB.class);
 
-        myDB.addRecord(new Record().setName("Oriya").setScore(score).setLat(lat).setLon(lon));
+        myDB.addRecord(new Record().setName(playerName).setScore(score).setLat(lat).setLon(lon));
 
         //save to MSP
         String jsonRecords = new Gson().toJson(myDB);
         MSP.getInstance(this).putStringSP("MY_DB", jsonRecords);
     }
 
-    private void toest(String text) {
+    private void toast(String text) {
         Toast.makeText(this, text, Toast.LENGTH_LONG).show();
     }
 

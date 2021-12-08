@@ -6,7 +6,6 @@ public class MyDB {
 
     private ArrayList<Record> records = new ArrayList<Record>();
     private static final int MAX_RECORDS = 10;
-    private static int minRecord=0;
 
     public MyDB() {
     }
@@ -28,7 +27,7 @@ public class MyDB {
     }
 
     private void sortByScore() {
-        records.sort((o1, o2) -> o1.getScore()-o2.getScore());
+        records.sort((o1, o2) -> o2.getScore()-o1.getScore());
     }
 
 

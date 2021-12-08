@@ -12,11 +12,12 @@
         android:id="@+id/menu_BTN_playGame"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:backgroundTint="#7E766C"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#11A0E1"
         android:text="Play Game"
         app:layout_constraintBottom_toTopOf="@+id/menu_BTN_score"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,12 +25,14 @@
         android:id="@+id/menu_BTN_score"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="#7E766C"
+        android:backgroundTint="#11A0E1"
         android:text="Score"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.199" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/menu_SWT_sound"
@@ -54,6 +57,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/menu_SWT_sound" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/menu_LBL_PlayerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="PlayerName"
+        android:inputType="textPersonName"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menu_SWT_sensor"
+        app:layout_constraintVertical_bias="0.048" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
