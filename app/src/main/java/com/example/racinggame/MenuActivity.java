@@ -46,6 +46,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         findViews();
+        locationPermission();
 
 
         menu_BTN_score.setOnClickListener(V-> {
@@ -83,10 +84,8 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }else{
-                Toast.makeText(this, "You must fill PlayerName", Toast.LENGTH_LONG).show();
+                toast("You must fill PlayerName");
 
-//                toast("You must fill PlayerName");
-                Log.d("pttt" , "haaaaaaaaaaaaa");
             }
 
 
